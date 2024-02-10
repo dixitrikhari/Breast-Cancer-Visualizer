@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_get_patient_details.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500;600&display=swap"
+        rel="stylesheet">
+    <title>FORERANDOM - Form</title>
+</head>
+<body>
+    <header>
+        <div style="width: 50%; float:left">
+            <h1>FORERANDOM</h1>
+        </div>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="home">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="services" class="services">
+        <div class="container">
+            <div class="service">
+                <h1>Check For Breast Cancer</h1>
+            </div>
+        </div>
+    </section>
+    <form action="/visualize" method="post">
+
+        <label for=column_name>Select the column for which you want the analysis</label>
+        <select name="column_name" id="column_name" onchange="showNextQuestion(this.value)">
+            <option value=""></option>
+            <option value="patient_id">Patient Id</option>
+            <option value="age_at_diagnosis">Age At Diagnosis</option>
+            <option value="type_of_breast_surgery">Type Of Breast Surgery</option>
+            <option value="cancer_type">Cancer Type</option>
+            <option value="cancer_type_detailed">Cancer Type Detailed</option>
+            <option value="cellularity">Cellularity</option>
+            <option value="chemotherapy">Chemotherapy</option>
+            <option value="cohort">Cohort</option>
+            <option value="er_status_measured_by_ihc">ER Status Measured By IHC</option>
+            <option value="er_status">ER Status</option>
+            <option value="neoplasm_histologic_grade">Neoplasm Histologic Grade</option>
+            <option value="her2_status">HER2 Status</option>
+            <option value="hormone_therapy">Hormone Therapy</option>
+            <option value="inferred_menopausal_state">Inferred Menopausal State</option>
+            <option value="primary_tumor_laterality">Primary Tumor Laterality</option>
+            <option value="lymph_nodes_examined_positive">Lymph Nodes Examined Positive</option>
+            <option value="mutation_count">Mutation Count</option>
+            <option value="nottingham_prognostic_index">Nottingham Prognostic Index</option>
+            <option value="overall_survival_months">Overall Survival Months</option>
+            <option value="overall_survival">Overall Survival</option>
+            <option value="pr_status">PR Status</option>
+            <option value="radio_therapy">Radio Therapy</option>
+            <option value="tumor_size">Tumor Size</option>
+            <option value="tumor_stage">Tumor Stage</option>
+            <option value="death_from_cancer">Death From Cancer</option>
+        </select>
+
+        <div id="nextQuestionContainer" class="question-container">
+            
+        </div>
+        <input type="submit" value="Visualize">
+    </form>
+    
+    <script>
+        function showNextQuestion(selectedValue) {
+            var nextQuestionContainer = document.getElementById('nextQuestionContainer');
+    
+            
+            nextQuestionContainer.innerHTML = '';
+            nextQuestionContainer.style.display = 'none';
+    
+            var questions = {
+                'patient_id': 'Enter the Patient ID',
+                'age_at_diagnosis': 'Enter the Age at Diagnosis',
+                'lymph_nodes_examined_positive' : 'Enter the lymph nodes',
+                'nottingham_prognostic_index' : 'Enter nottingham prognostic value',
+                'overall_survival_months' : 'Enter the number of months',
+                'tumor_size' : 'Enter the tumor size',
+                'mutation_count' : 'Enter the mutation count'
+            };
+    
+
+            if (selectedValue in questions) {
+                nextQuestionContainer.style.display = 'block';
+    
+                var nextQuestionLabel = document.createElement('label');
+                nextQuestionLabel.textContent = questions[selectedValue];
+                nextQuestionContainer.appendChild(nextQuestionLabel);
+    
+                // Create and append the text input field
+                var textInput = document.createElement('input');
+                textInput.setAttribute('type', 'text');
+                textInput.setAttribute('id', 'column_value');
+                textInput.setAttribute('name', 'column_value');
+                nextQuestionContainer.appendChild(textInput);
+            }
+        }
+    </script>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 all rights reserved to the authors</p>
+        </div>
+    </footer>
+</body>
+</html>

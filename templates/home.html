@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_home.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500;600&display=swap"
+        rel="stylesheet">
+    <title>FORERANDOM - Home</title>
+</head>
+
+<body>
+    <header>
+        <div style="width: 50%; float:left">
+            <h1>FORERANDOM</h1>
+        </div>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="home">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="container">
+            <img class='image' src="{{ url_for('static', filename='css/images/illustration1.png') }}" alt="woman">
+
+            <div style="width: 50%; float:right" class="hero">
+
+                <p>"Unveiling the power of prediction in the fight against breast cancer. Our technology, a guardian of
+                    early detection, offers a shield of hope. Together, let's redefine the future of breast health,
+                    turning prediction into prevention, and ensuring every journey is marked by resilience, strength,
+                    and triumph."
+                </p>
+                <a href="get_patient_details" class="btn">Check for Breast Cancer</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 all rights reserved to the authors</p>
+        </div>
+    </footer>
+    
+</body>
+
+</html>
